@@ -1,8 +1,9 @@
-const express = require('express');
-const path = require('path');
-const user = require('./route/user.js');
-const hbs = require('express-handlebars');
-const bodyParser = require('body-parser');
+// const express = require('express');
+import express from 'express';
+import path from 'path';
+import user from './route/user.js';
+import hbs from 'express-handlebars';
+import bodyParser from 'body-parser';
 
 const app = express();
 
@@ -14,6 +15,10 @@ app.set('view engine','handlebars');
 app.use(bodyParser.urlencoded({extended:true}))      
 app.use(bodyParser.json());
 app.use(user);
+
+app.get('/home',(req,res)=>{
+	res.render('all-emp');
+});
 
 const PORT = process.env.PORT || 5000;
 

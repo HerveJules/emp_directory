@@ -1,14 +1,9 @@
-const express = require('express');
-const user = require('../controllers/user.js');
+import express from 'express';
+import User from'../controllers/user';
 
 const router = express.Router();
 
-const {dispaly_user} = user;
+router.get('/staff',User.display_user);
 
-router.get('/',(req,res)=>{
-	res.render('all-emp',{
-		dispaly_user
-	})
-})
 
-module.exports = router;
+export default router;

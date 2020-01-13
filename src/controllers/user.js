@@ -1,29 +1,27 @@
-const db = require('../models');
-const sequelize = require('sequelize');
+import db from '../models';
+import sequelize from 'sequelize';
 
 class Users{
 
 	static async display_user(req,res){
-
-		// test inputs
-
-		// console.log(req.body);
-		const {emp_dirs}=db;
+		const {emp_dir}=db;
 
 		try{
-			const all = await emp_dirs.FindAll();
-			if (all) {
-
+			const findAll = await emp_dir.findAll({
+       			attributes:['id','FName','LName','Email','Phone','skype','Position','Department','DoB']
+      		});
+			if (findAll) {
+				// console.log(findAll[0].FName);
 				res.render('all-emp',{
-					all
+					findAll,
 				})
 			} else {
-				return 'not found'
+				console.log('not found');
 			}
 		}catch(err){
-			return err
+			console.log(err);
 		}
 	}
 
 }
-module.exports = Users.display_user;
+export default Users
