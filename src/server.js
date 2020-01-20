@@ -2,6 +2,7 @@
 import express from 'express';
 import path from 'path';
 import user from './route/user.js';
+import User from './controllers/user.js';
 import hbs from 'express-handlebars';
 import bodyParser from 'body-parser';
 
@@ -16,12 +17,17 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json());
 app.use(user);
 
-app.get('/home',(req,res)=>{
-	res.render('all-emp');
+app.get('/log',(req,res)=>{
+	res.render('index');
 });
+app.get('/about',(req,res)=>{
+	res.render('about');
+})
+app.get('/contact',User.display_user)
+app.post('/profile/:id',User.single);
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
 
-module.export = app;
+export default app;

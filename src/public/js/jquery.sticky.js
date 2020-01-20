@@ -29,12 +29,12 @@
       topSpacing: 0,
       bottomSpacing: 0,
       className: 'is-sticky',
-      wrapperClassName: 'sicker-menu',
+      wrapperClassName: 'sticky-wrapper',
       center: false,
       getWidthFrom: '',
       widthFromWrapper: true, // works only when .getWidthFrom is empty
       responsiveWidth: false,
-      zIndex: '999999'
+      zIndex: 'inherit'
     },
     $window = $(window),
     $document = $(document),
@@ -79,7 +79,8 @@
           if (s.currentTop !== newTop) {
             var newWidth;
             if (s.getWidthFrom) {
-                newWidth = $(s.getWidthFrom).width() || null;
+                padding =  s.stickyElement.innerWidth() - s.stickyElement.width();
+                newWidth = $(s.getWidthFrom).width() - padding || null;
             } else if (s.widthFromWrapper) {
                 newWidth = s.stickyWrapper.width();
             }
