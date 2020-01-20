@@ -31,8 +31,9 @@ class Users{
 		try{
 			const findOne = await emp_dir.findOne({where:req.params});
 			if (findOne) {
+
 				res.render('profile',{
-					findOne
+					profile:findOne.dataValues
 				})
 			} else {
 				console.log('not found');

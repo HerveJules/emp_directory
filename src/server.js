@@ -17,13 +17,10 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json());
 app.use(user);
 
-app.get('/log',(req,res)=>{
-	res.render('index');
+
+app.get('/profile',(req,res)=>{
+	res.render('profile');
 });
-app.get('/about',(req,res)=>{
-	res.render('about');
-})
-app.get('/contact',User.display_user)
 app.post('/profile/:id',User.single);
 
 const PORT = process.env.PORT || 5000;
